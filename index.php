@@ -34,11 +34,11 @@
 		<br><br>
 		<a href="Jogar.php"><button>Jogar</button></a>
 		<br>
-		<a href="Instruçoes.php"><button>Instruções</button></a>
+		<a href="Instruçoes.php"><button>Instruções(Em Desenvolvimento)</button></a>
 		<br>
-		<a href="Recordes.php"><button>Recordes</button></a>
+		<a href="Recordes.php"><button>Recordes(Em Desenvolvimento)</button></a>
 		<br>
-		<a href="Configuraçoes.php"><button>Configurações</button></a>
+		<a href="Configuraçoes.php"><button>Configurações(Em Desenvolvimento)</button></a>
 		<br>
 		<a href="Creditos.php"><button>Créditos</button></a>
 	</center>
