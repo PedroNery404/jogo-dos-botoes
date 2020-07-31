@@ -30,6 +30,7 @@
 			box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
 			font-style: italic;
 			font-family: 'Trade Winds', cursive;
+			outline: none;
 		}
 		button:hover{
 			background-color: gray;
@@ -42,11 +43,11 @@
 		<p class="Titulo">Agradecimentos Especiais</p>
 		<div>
 			<p>Esse jogo foi pensado e produzido por Pedro Nery com o intuito de testar suas habilidades e tentar fazer um jogo com o desafio da torre do fogo do game Forager.</p>
-			<p>Para nao apenas copiar e colar o jogo tentei colocar alguns extras para melhorar a ideia e deixar a brincadeira mais interessante e desafiadora.</p>
-			<p>Essa versão é apenas um prototipo,ou seja,atualizações serão feitas.</p>
-			<p>Obrigado a todos aqueles que jogaram e gostaram do desafio que tentei fazer.</p>
+			<p>Para não apenas copiar e colar o jogo tentei colocar alguns extras para melhorar a ideia e deixar a brincadeira mais interessante e desafiadora.</p>
+			<p>Essa versão é apenas um protótipo, ou seja, atualizações serão feitas.</p>
+			Obrigado a todos aqueles que jogaram e gostaram do desafio que tentei fazer.
+			<a href="index.php"><button>Voltar</button></a>
 		</div>
-		<a href="index.php"><button>Voltar</button></a>
 	</center>
 </body>
 </html>

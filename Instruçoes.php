@@ -39,6 +39,7 @@
 				box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
 				font-style: italic;
 				font-family: 'Trade Winds', cursive;
+				outline: none;
 			}
 			button:hover{
 				background-color: gray;
@@ -50,18 +51,18 @@
 		<div class="container">
 			<div class="box">
 				<p class="Titulo">Objetivo</p>
-				Colorir todos os botoes para avançar para o próximo nível.
+				Colorir todos os botões para avançar para o próximo nível.
 				<p class="Titulo">Como Jogar?</p>
-				Para jogar escolha um modo de jogo e depois clique nos botoes para colorir ele mesmo e os botoes adjacentes.Continue colorindo eles até todos estarem pintados.
+				Para jogar escolha um modo de jogo e depois clique nos botões para colorir ele mesmo e os botões adjacentes.Continue colorindo eles até todos estarem pintados.
 				<p class="Titulo">Tipos de jogos</p>
 				1°-Modo de Níveis<br>
 				Nesse modo você começa no nível iniciante e quando ganhar vai para um nível mais difícil em seguida até o nível avançado.<br>
 				2°-Modo Infinito<br>
-				Nesse modo voce pode testar sua capacidade máxima no jogo pois os níveis só acabam quando você desistir.<br>
+				Nesse modo você pode testar sua capacidade máxima no jogo pois os níveis só acabam quando você desistir.<br>
 				3°-Modo Aleatório<br>
-				Nesse modo cada nível começa com alguns botoes coloridos e seu desafio sera descobrir novas formas de ganhar porque cada nivel sera cada vez mais imprevisível e desafiador<br>
-				4°-Modo Corrida Infinita<br>
-				Nesse modo voce poderá aproveitar o modo infinito de maneira diferente,agora existirá um contador para medir sua velociade na resoluçao dos níveis e seu tempo sera registrado na opção de Recordes e os melhores tempos serão exibidos para todos os jogadores.<br>
+				Nesse modo cada nível começa com alguns botões coloridos e seu desafio será descobrir novas formas de ganhar já que cada nível sera cada vez mais imprevisível e desafiador.<br>
+				4°-Modo Treino<br>
+				Nesse modo você pode ir diretamente para o nível que desejar pra treinar suas habilidades sem ter que começar desde o início.<br>
 			</div>
 		</div>
 		<center><a href="index.php"><button>Voltar</button></a></center>

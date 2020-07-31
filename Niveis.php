@@ -19,6 +19,7 @@
 			box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
 			font-style: italic;
 			font-family: 'Trade Winds', cursive;
+			outline: none;
 		}
 		a{
 			text-decoration: none;
@@ -32,15 +33,15 @@
 <body>
 	<center>
 		<br><br>
-		<a href="Jogo.php?Modo=1&Valor=2"><button>Iniciante</button></a>
+		<a href="Jogo.php?Modo=1&Valor=2&Botoes=--"><button>Iniciante</button></a>
 		<br>
-		<a href="Jogo.php?Modo=1&Valor=3"><button>Fácil</button></a>
+		<a href="Jogo.php?Modo=1&Valor=3&Botoes=--"><button>Fácil</button></a>
 		<br>
-		<a href="Jogo.php?Modo=1&Valor=4"><button>Médio</button></a>
+		<a href="Jogo.php?Modo=1&Valor=4&Botoes=--"><button>Médio</button></a>
 		<br>
-		<a href="Jogo.php?Modo=1&Valor=5"><button>Difícil</button></a>
+		<a href="Jogo.php?Modo=1&Valor=5&Botoes=--"><button>Difícil</button></a>
 		<br>
-		<a href="Jogo.php?Modo=1&Valor=6"><button>Avançado</button></a>
+		<a href="Jogo.php?Modo=1&Valor=6&Botoes=--"><button>Avançado</button></a>
 		<br>
 		<a href="Jogar.php"><button>Voltar</button></a>
 	</center>

@@ -19,6 +19,7 @@
 			box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
 			font-style: italic;
 			font-family: 'Trade Winds', cursive;
+			outline: none;
 		}
 		a{
 			text-decoration: none;
@@ -31,14 +32,12 @@
 </head>
 <body>
 	<center>
-		<br><br>
+		<br><br><br><br><br>
 		<a href="Jogar.php"><button>Jogar</button></a>
 		<br>
 		<a href="Instruçoes.php"><button>Instruções</button></a>
 		<br>
-		<a href="index.php"><button>Recordes(Em Desenvolvimento)</button></a>
-		<br>
-		<a href="index.php"><button>Configurações(Em Desenvolvimento)</button></a>
+		<a href="Recordes.php"><button>Recordes</button></a>
 		<br>
 		<a href="Creditos.php"><button>Créditos</button></a>
 	</center>
