@@ -16,7 +16,6 @@
 			background-color: lightgreen;
 		}
 		button{
-			background-color: lightgray;
 			color: green;
 			border:0px;
 			width: 90px;
@@ -25,6 +24,7 @@
 			margin-left: 10px;
 			border-radius: 10px;
 			cursor: pointer;
+			outline: none;
 		}
 		button:hover{
 			color: lightgreen;
@@ -54,210 +54,96 @@
 			height: 4vh;		
 		}
 	</style>
-	<script type="text/javascript">
-		function incrementaCampo( ){
-			var segundos =document.getElementById("segundos").value;
-			var minutos =document.getElementById("minutos").value;
-			var horas =document.getElementById("horas").value;
-			document.getElementById("segundos").value =Number(segundos) + 1;
-			if (segundos==59){
-				document.getElementById("segundos").value =0;
-				if (document.getElementById("minutos").value ==false) {
-					document.getElementById("minutos").value =1;
-					document.getElementById("MinutosDoisPontos").value=':';
-				} 
-				else {
-					document.getElementById("minutos").value =Number(minutos) + 1;
-					if(minutos==59){
-						document.getElementById("minutos").value =0;
-						if (document.getElementById("horas").value ==false) {
-							document.getElementById("horas").value =1;
-							document.getElementById("HorasDoisPontos").value=':';
-						}
-						else{
-							document.getElementById("horas").value =Number(horas) + 1;
-						} 
-					}
-				}
-			}
-		}
-		setInterval("incrementaCampo( )", 1);
-	</script>
 </head>
 <body>
 	<?php 
-		echo('<input type="text" id="segundos" value="0" disabled></input>');
-		echo "<input id='MinutosDoisPontos' style=width:10px;></input>";
-		echo('<input type="text" id="minutos" disabled></input>');
-		echo "<input id='HorasDoisPontos' style=width:10px;></input>";
-		echo('<input type="text" id="horas" disabled></input>');
-		echo "<div class='container'><div class='box'><center>";
 		$valor=filter_input(INPUT_GET,'Valor', FILTER_SANITIZE_NUMBER_INT);
 		$botoes=filter_input(INPUT_GET,'Botoes', FILTER_SANITIZE_NUMBER_INT);
+		if (empty($botoes)) {
+			$botoes='--';
+		}
 		$modo=filter_input(INPUT_GET,'Modo', FILTER_SANITIZE_NUMBER_INT);
+		if (empty($modo)) {
+			$modo='4';
+		}
 		$ok=filter_input(INPUT_GET,'ok', FILTER_SANITIZE_NUMBER_INT);
-$lista=explode('-', $botoes);
-$botoes=implode('-', $lista);
-$conferir=[];
-for ($i=1; $i <($valor**2)+1; $i++) { 
-	array_push($conferir, $i);
-}
+		echo "<div class='container'><div class='box'><center>";
+
+		$v=[$botoes];
+		$t=implode('--', $v);
+		$r=explode('--', $t);
+		$antes=$r[0];
+		$novo=$r[1];
+		$novo=$r[1];
+		$antes1=explode('-', $antes);
+		$novo1=explode('-', $novo);
+		$diferenca=array_diff($antes1, $novo1);
+		$diferenca2=array_diff($novo1, $antes1);
+		$resultado=array_merge($diferenca,$diferenca2);
+		sort($resultado);
+		$link=implode('-', $resultado);//Valor enviado para a url para alterar a cor dos botoes
+		$final=implode('', $resultado);
+		$progresso=strval($final);//Comparar com o objetivo para saber se o usuario passou de fase
+		//FIM
+		$conferir=[];
+		for ($i=1; $i <($valor**2)+1; $i++) { 
+			array_push($conferir, $i);
+		}
+		$b=implode('', $conferir);
+		$objetivo=strval($b);
+
 if($valor==1){
 	$valor++;
 	echo "<button><a href='Jogo.php?Modo=$modo&Valor=$valor'>1</a></button>";
 }
 else{
 	$contador=0;
-	$vitoria=0;
-	for($coluna=1;$coluna<$valor+1;$coluna++){
-		if($coluna==1){
+	for ($i=0; $i <$valor ; $i++) { 
+		for ($o=0; $o <$valor ; $o++) { 
 			$contador+=1;
-			$cor=MudarEstado($contador,$botoes);
-			if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-			$ar = array($contador,$contador+1,$contador+$valor);
-			$ar2=implode("-", $ar);
-			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
+			$cor=MudaCor($contador,$resultado);
+			$coloridos=LinkBotoes($contador,$valor);
+			$coloridos2=implode('-', $coloridos);
+			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$link--$coloridos2'><button style='background-color:$cor'>$contador</button></a>";
+			
 		}
-		elseif($coluna==$valor){
-			$contador+=1;
-			$cor=MudarEstado($contador,$botoes);
-			if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-			$ar = array($contador,$contador+$valor,$contador-1);
-			$ar2=implode("-", $ar);
-			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-		}
-		else{
-			$contador+=1;
-			$cor=MudarEstado($contador,$botoes);
-			if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-			$ar = array($contador,$contador-1,$contador+1,$contador+$valor);
-			$ar2=implode("-", $ar);
-			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-		}
-	}
-	echo "<br>";
-	for($linha=1;$linha<$valor-1;$linha++){
-		for($coluna=1;$coluna<$valor+1;$coluna++){
-			if($coluna==1){
-				$contador+=1;
-				$cor=MudarEstado($contador,$botoes);
-				if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-				$ar = array($contador,$contador+1,$contador+$valor,$contador-$valor);
-				$ar2=implode("-", $ar);
-				echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-			}
-			elseif($coluna==$valor){
-				$contador+=1;
-				$cor=MudarEstado($contador,$botoes);
-				if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-				$ar = array($contador,$contador+$valor,$contador-$valor,$contador-1);
-				$ar2=implode("-", $ar);
-				echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-			}
-			else{
-				$contador+=1;
-				$cor=MudarEstado($contador,$botoes);
-				if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-				$ar = array($contador,$contador+$valor,$contador-$valor,$contador-1,$contador+1);
-				$ar2=implode("-", $ar);
-				echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-			}
-		}
-		echo "<br>";
-	}
-	for($coluna=1;$coluna<$valor+1;$coluna++){
-		if($coluna==1){
-			$contador+=1;
-			$cor=MudarEstado($contador,$botoes);
-			if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-			$ar = array($contador,$contador+1,$contador-$valor);
-				$ar2=implode("-", $ar);
-			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-		}
-		elseif($coluna==$valor){
-			$contador+=1;
-			$cor=MudarEstado($contador,$botoes);
-			if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-			$ar = array($contador,$contador-$valor,$contador-1);
-				$ar2=implode("-", $ar);
-			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-		}
-		else{
-			$contador+=1;
-			$cor=MudarEstado($contador,$botoes);
-			if ($cor=="black") {
-				$vitoria+=1;
-			}
-			else{
-				$vitoria-=1;
-			}
-			$ar = array($contador,$contador-$valor,$contador-1,$contador+1);
-				$ar2=implode("-", $ar);
-			echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=$botoes-$ar2'><button style='background-color:$cor'>$contador</button></a>";
-		}
-	}
-}
-function MudarEstado($botao,$botoes){
-	$lista=explode('-', $botoes);
-	$ar2 = array_count_values($lista);
-	if (array_key_exists($botao,$ar2)) {
-		if ($ar2[$botao]%2==1) {
-			return "black";
-		}
-		else{
-		return "lightgray";
-	}
-	}
-	else{
-		return "lightgray";
+		echo("<br>");
 	}
 }
 echo "<br><a href='Jogar.php'><button id='Voltar'>Voltar</button></a>";
-if ($modo!=3 && $modo!=4) {
-	echo "<br><a href='Jogo.php?Modo=$modo&Valor=$valor'><button id='Voltar'>Reiniciar Nivel</button</a>";
+if ($modo!=3) {
+	echo "<a href='Jogo.php?Modo=$modo&Valor=$valor&Botoes=--'><button id='Voltar'>Reiniciar</button</a>";	
 }
-if ($vitoria==$valor**2 || $ok=="1") {
-	echo "<br><a href='Vitoria.php?Modo=$modo&Nivel=$valor'><button type='submit' id=Vitoria>Parabens</button></a>";
+if ($progresso==$objetivo) {
+	echo "<a href='Vitoria.php?Modo=$modo&Nivel=$valor'><button id='Voltar'>Parabens</button></a>";
+}
+function MudaCor($contador,$resultado){
+	if (in_array($contador, $resultado)) {
+		return "black";
+	}
+	return "lightgray";
+}
+function LinkBotoes($contador,$valor){
+	$a=$contador-$valor;
+	$b=$contador-1;
+	$c=$contador;
+	$d=$contador+1;
+	$e=$contador+$valor;
+	$BotoesColoridos=[];
+	if ($a>0) {
+		array_push($BotoesColoridos, $a);
+	}
+	if ($b>0 && $b%$valor!=0) {
+		array_push($BotoesColoridos, $b);
+	}
+	array_push($BotoesColoridos, $c);
+	if ($d<=$valor**2 && $d%$valor!=1) {
+		array_push($BotoesColoridos, $d);
+	}
+	if ($e<=$valor**2) {
+		array_push($BotoesColoridos, $e);
+	}
+	return $BotoesColoridos;
 }
 ?>
 </center>
