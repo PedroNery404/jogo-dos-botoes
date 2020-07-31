@@ -102,7 +102,7 @@
 						<div class='hidden' id='Recorde'>
 						<form action='Recordes.php?' method='GET'>
 						<label style='font-size: 20px;'>Digite o nome que voce quer colocar nos Recordes<br><br></label>
-						<label style='font-size: 20px;'>OBS:Para se registrar voce precisa terminar essa corrida ou seja caso se registre voce nao podera continuar avançando e tera que começar do inicio pra tentar entrar nos recordes denovo<br><br></label>
+						<label style='font-size: 20px;'>OBS:Para se registrar você precisa terminar essa corrida, ou seja, caso se registre você não poderá continuar avançando e terá que começar do início pra tentar entrar nos recordes de novo.<br><br></label>
 						<input type='text' name='Nick' max='20'>
 						<input type='text' name='Nivel' max='20' class=hidden value='$nivel2'>
 						<button type='submit' style='width: 100px;height: 40px;font-size: 20px;'>OK</button>
